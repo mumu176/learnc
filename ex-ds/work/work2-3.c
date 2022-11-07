@@ -53,7 +53,7 @@ void InOrderout(BiTree bt)
     }
 }
 
-bool search_key_tree(BiTree tr, int *x, int key)
+bool search_key_tree(BiTree tr, int key)
 {
     bool bo = false;
     if (tr->data > key)
@@ -61,7 +61,7 @@ bool search_key_tree(BiTree tr, int *x, int key)
         tr = tr->LChild;
         if (tr == NULL)
             return false;
-        else if (search_key_tree(tr, x, key) == true)
+        else if (search_key_tree(tr, key) == true)
             return true;
     }
     else if (tr->data < key)
@@ -69,12 +69,11 @@ bool search_key_tree(BiTree tr, int *x, int key)
         tr = tr->RChild;
         if (tr == NULL)
             return false;
-        else if (search_key_tree(tr, x, key) == true)
+        else if (search_key_tree(tr, key) == true)
             return true;
     }
     else if (tr->data == key)
     {
-        *x = tr->data;
         return true;
     }
     else
@@ -83,7 +82,7 @@ bool search_key_tree(BiTree tr, int *x, int key)
 
 int main()
 {
-    int key, x; // key为关键字的值，x为从递归带出key的变量
+    int key;// key为关键字的值，x为从递归带出key的变量
     BiTree tr1 = NULL;
     bool bo = false;
 
@@ -94,8 +93,8 @@ int main()
     printf("当前排序二叉树中序输出：");
     InOrderout(tr1); //按值从小到大输出
     printf("\n输入要查找的key值：");
-    scanf("%d", &key);                  //输入关键字key的值
-    bo = search_key_tree(tr1, &x, key); //判断是否找到
+    scanf("%d", &key);              //输入关键字key的值
+    bo = search_key_tree(tr1, key); //判断是否找到
     if (bo == true)
     {
         printf("找到关键字key");
