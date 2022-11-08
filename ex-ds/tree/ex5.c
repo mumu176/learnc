@@ -1,84 +1,134 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <string.h>
 #define N 20
-#define M 2*N-1
+#define M 2 * N - 1
 
 typedef struct
-    {
-        int weight;
-        int parent;
-        int LChild;
-        int RChild;
-    }HTNode,HuffmanTree[M+1];
-
-void select(HuffmanTree ht,int n,int *x1,int *x2)
 {
-    int i,t,p1,p2;
-    for(i=1,t=INT_MAX,p1=1;i<=n;i++)
+    int weight;
+    int parent;
+    int LChild;
+    int RChild;
+} HTNode, HuffmanTree[M + 1]; // the first is empty
+
+typedef char *HuffmanCode[N + 1];
+
+void select(HuffmanTree ht, int n, int *x1, int *x2)
+{
+    int i, t, p1, p2;
+    for (i = 1, t = INT_MAX, p1 = 1; i <= n; i++)
     {
-        if(ht[i].weight<t)
+        if (ht[i].weight < t && ht[i].parent == 0)
         {
-            t=ht[i].weight;
-            p1=i;//p´«³ö×îÐ¡È¨ÖµµÄÐòºÅ
+            t = ht[i].weight;
+            p1 = i; //ç¬¬ä¸€å°çš„æƒå€¼
         }
     }
-    for(i=1,t=INT_MAX,p2=1;i<=n;i++)
+    for (i = 1, t = INT_MAX, p2 = 1; i <= n; i++)
     {
-        if(ht[i].weight<t&&i!=p1)
+        if (ht[i].weight < t && i != p1 && ht[i].parent == 0)
         {
-            t=ht[i].weight;
-            p2=i;//p´«³öµÚ¶þÐ¡È¨ÖµµÄÐòºÅ
+            t = ht[i].weight;
+            p2 = i; //ç¬¬äºŒå°çš„æƒå€¼
         }
     }
-    *x1=p1;
-    *x2=p2;
+    *x1 = p1;
+    *x2 = p2;
 }
 
-void CrtHuffmantree(HuffmanTree ht,int w[],int n)
+void CrtHuffmantree(HuffmanTree ht, int w[], int n)
 {
-    int i,m;
-    for(i=1;i<=n;i++)
+    int i, m;
+    for (i = 1; i <= n; i++)
     {
-        ht[i].weight=w[i-1];
-        ht[i].parent=0;
-        ht[i].LChild=0;
-        ht[i].RChild=0;
+        ht[i].weight = w[i - 1];
+        ht[i].parent = 0;
+        ht[i].LChild = 0;
+        ht[i].RChild = 0;
     }
-    m=2*n-1;
-    for(i=n+1;i<=m;i++)
+    m = 2 * n - 1;
+    for (i = n + 1; i <= m; i++)
     {
-        ht[i].weight=0;
-        ht[i].parent=0;
-        ht[i].LChild=0;
-        ht[i].RChild=0;
+        ht[i].weight = 0;
+        ht[i].parent = 0;
+        ht[i].LChild = 0;
+        ht[i].RChild = 0;
     }
-    //chushihuawanbi
-    for(i=n+1;i<=m;i++)
+    // chushihuawanbi
+    for (i = n + 1; i <= m; i++)
     {
 
-        int s1=0,s2=0;//µÚÒ»Ð¡ºÍµÚ¶þÐ¡µÄÐòºÅ
-        select(ht,i-1,&s1,&s2);
-        ht[i].weight=ht[s1].weight+ht[s2].weight;
-        ht[s1].parent=i;
-        ht[s2].parent=i;
-        ht[i].LChild=s1;//  ×óÐ¡ÓÒ´ó
-        ht[i].RChild=s2;
-
+        int s1 = 0, s2 = 0; //ç¬¬ä¸€å°ç¬¬äºŒå°
+        select(ht, i - 1, &s1, &s2);
+        ht[i].weight = ht[s1].weight + ht[s2].weight;
+        ht[s1].parent = i;
+        ht[s2].parent = i;
+        ht[i].LChild = s1; //  å·¦å°å³å¤§
+        ht[i].RChild = s2;
     }
 }
 
+//åˆ›å»ºå“ˆå¤«æ›¼ç¼–ç 
+void CrtHuffmanCode(HuffmanTree ht, HuffmanCode hc, int n)
+{
+    char *cd;
+    int start, c, i, p;
+    cd = (char *)malloc(n * sizeof(char));
+    cd[n - 1] = '\0';
+    for (i = 1; i <= n; i++)
+    {
+        start = n - 1;
+        c = i;
+        p = ht[i].parent;
+        while (p != 0)
+        {
+            --start;
+            if (ht[p].LChild == c)
+            {
+                cd[start] = '1';
+            }
+            else
+            {
+                cd[start] = '0';
+            }
+            c = p;
+            p = ht[p].parent;
+        }
+        hc[i] = (char *)malloc((n - start) * sizeof(char));
+        strcpy(hc[i], &cd[start]);
+    }
+    free(cd); //é‡Šæ”¾ç©ºé—´
+}
 
 int main()
 {
-    HuffmanTree ht[10];
-    int i;
-    int w1[5];
-    for(i=0;i<5;i++)
+    HuffmanTree ht;
+    HuffmanCode hc;
+    int i, n;
+    int w1[N];
+    printf("æƒå€¼ä¸ªæ•°:");
+    scanf("%d", &n);
+    printf("æƒå€¼:");
+    for (i = 0; i < n; i++)
     {
-        scanf("%d",&w1[i]);
+        scanf("%d", &w1[i]);
     }
-    CrtHuffmantree(ht,w1,5);
+    CrtHuffmantree(ht, w1, n); //å“ˆå¤«æ›¼æ ‘æž„å»º
+    CrtHuffmanCode(ht, hc, n); //å“ˆå¤«æ›¼ç¼–ç 
+
+    printf("weigth\tparent\tLChild\tRChild\n"); // utf8
+    for (i = 1; i <= 2 * n - 1; i++)
+    {
+        printf("%-6d\t%-6d\t%-6d\t%-6d\n", ht[i].weight, ht[i].parent, ht[i].LChild, ht[i].RChild);
+    }
+
+    printf("weigth\tparent\tLChild\tRChild\tCode\n"); // utf8
+    for (i = 1; i <= n; i++)
+    {
+        printf("%-6d\t%-6d\t%-6d\t%-6d\t%-s\n", ht[i].weight, ht[i].parent, ht[i].LChild, ht[i].RChild, hc[i]);
+    }
 
     return 0;
 }
