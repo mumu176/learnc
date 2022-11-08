@@ -1,7 +1,0 @@
-#vscode配置#
-.vscode/
-*.txt
-*.exe
-*.md
-.gitignore
-.keep
