@@ -4,9 +4,6 @@
 #include <dos.h>
 int main()
 {
-    // int s;
-    // srand((unsigned)time(NULL));
-    // s=rand();
     time_t t;
     t = time(NULL);
     struct tm *tb;
