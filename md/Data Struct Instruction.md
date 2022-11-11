@@ -51,7 +51,7 @@ B23--->B233(块链串)
 
 示例代码 1：顺序栈（字符）
 
-```c{.line-numbers}
+```c
 typedef struct
 {
     int top;
@@ -63,7 +63,7 @@ typedef struct
 
 示例代码 2：哈夫曼树
 
-```c{.line-numbers}
+```c
 typedef struct
 {
     int weight;
@@ -81,7 +81,7 @@ typedef struct
 
 示例代码 1：单链表
 
-```c{.line-numbers}
+```c
 typedef struct node
 {
     char ch;
@@ -93,7 +93,7 @@ typedef struct node
 
 示例代码 2：二叉树（二叉链表）
 
-```c{.line-numbers}
+```c
 typedef struct node
 {
     int data;
@@ -110,7 +110,7 @@ typedef struct node
 
 示例代码 1：树（孩子表示法）
 
-```c{.line-numbers}
+```c
 typedef struct ChildNode//孩子链表结点定义
 {
     int Child;//孩子的位置
@@ -136,7 +136,7 @@ typedef struct//树的定义
 
 示例代码 2：图（领接表）
 
-```c{.line-numbers}
+```c
 #define MAX_VERTEX_NUM 20
 typedef enum//枚举类型，限定数值类型的值表示一种数据
 {
