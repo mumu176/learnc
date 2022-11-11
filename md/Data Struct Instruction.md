@@ -61,12 +61,6 @@ typedef struct
 
 > 顺序存储的数据对象在结构体中可以是多种类型的
 
-| top->    | data |
-| -------- | ---- |
-| /        | /    |
-| /        | /    |
-| **栈底** | /    |
-
 示例代码 2：哈夫曼树
 
 ```c
@@ -79,7 +73,7 @@ typedef struct
 }HTNode,Huffmantree[M+1];
 ```
 
-> 哈夫曼树是树的静态链表存储方式，实质上就是树结点结构结构体的顺序存储,示例 2 用`Huffmantree`字头声明结点数组头指针
+> 哈夫曼树是树的静态链表存储方式，实质上就树结点结构体的顺序存储,示例 2 用`Huffmantree`字头声明结点数组头指针
 
 ### 2.链式存储
 
@@ -95,15 +89,19 @@ typedef struct node
 }Node,*LinkLint;
 ```
 
-> 1.必须有`node`标签用于定义指向节点的指针 2.节点数据类型可以自由选用 3.单链表直线下一个节点的指针，通过它访问下一个节点 4.`Node`用来声明节点类型变量，`LinkList`用于声明指向节点类型指针相当于`Node*`
+> 1.必须有`node`标签用于定义指向节点的指针 
+> 2.节点数据类型可以自由选用 
+> 3.单链表直线下一个节点的指针，通过它访问下一个节点 
+> 4.`Node`用来声明节点类型变量，`LinkList`用于声明指向节点类型指针相当于`Node*`
 
 示例代码 2：二叉树
 
-```c
+~~~c++
 typedef struct node
 {
     int data;
     struct node *LChild;
     struct node *RChild;
-}
-```
+}BiTNode,*BiTree
+~~~
+>`BiTree`用来声明指向树根结点的指针，`BiTNode`用来声明其他结点
