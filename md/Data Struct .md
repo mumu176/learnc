@@ -102,7 +102,7 @@ typedef struct node
 {
     char ch;
     struct node *next//链式存储
-}Node,*LinkLint;
+}Node,*LinkList;
 ```
 
 > 说明：
