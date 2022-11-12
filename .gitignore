@@ -1,4 +1,5 @@
 *.json
 *.exe
 *.txt
-.ignore
+.gitignore
+.vs
