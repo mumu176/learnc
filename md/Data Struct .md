@@ -42,7 +42,8 @@ B23--->B233(块链串)
 ```
 
 ----
-![]()
+
+[img1]:https://gitee.com/mumu176/picture/raw/master/stack.jpg
 
 
 
@@ -58,6 +59,7 @@ B23--->B233(块链串)
 > 概括：顺序存储就是利用连续的存储空间存储需要的数据元素,在 C 语言中使用数组`elem[]`来存储数据对象,可以是顺序存储的<font color="red">结构体类型</font>,也可以是单个结构体中包含<font color="red">原子类型的顺序存储</font>
 
 示例代码 1：顺序栈（字符）
+>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![][img1]
 
 ```c
 typedef struct
@@ -67,7 +69,7 @@ typedef struct
 }Stack;
 ```
 
-> 说明：顺序存储的数据对象在结构体中可以是多种类型的
+> 说明：顺序存储的数据对象在结构体中可以是多种类型的，可以是<font color="red">数值</font>，<font color="red">字符</font>，<font color="red">数组</font>，<font color="red">结构体</font> 
 
 示例代码 2：哈夫曼树
 
