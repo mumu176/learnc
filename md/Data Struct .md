@@ -114,7 +114,7 @@ typedef struct node
 typedef struct ChildNode//孩子链表结点定义
 {
     int Child;//孩子的位置
-    struct ChildNode *next;下一个孩子的指针
+    struct ChildNode *next;//下一个孩子的指针
 }ChildNode;
 
 typedef struct//顺序表结点定义
