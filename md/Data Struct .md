@@ -3,7 +3,7 @@
 > 数据结构大纲图示
 
 ```mermaid
-graph BR
+graph LR
 A[数据结构]
 A--->B1(存储结构)
 A--->B2(逻辑结构)
