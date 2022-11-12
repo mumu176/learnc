@@ -42,6 +42,14 @@ B23--->B233(块链串)
 ```
 
 ----
+![](https://gitee.com/mumu176/learnc/blob/master/md/picture/stack.jpg)
+
+
+
+
+
+
+
 
 ## 一、存储结构
 
