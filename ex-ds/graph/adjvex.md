@@ -1,4 +1,6 @@
-领接矩阵源码
+##领接矩阵源码
+
+> 创建图类型的枚举
 
 ```c
 #include <stdio.h>
@@ -13,13 +15,18 @@ typedef enum//定义枚举图类型
     UDG,//无向图
     UDN//无向网
 } GraphKind;
+```
 
+> 定义顶点数据类型和边结构图结构
+
+```c
 typedef char VertexData;//图顶点数据类型是字符
 
 typedef struct arcnode//定义边结构
 {
     int adj;
 } ArcNode;
+
 typedef struct adjmatrix//定义邻接矩阵结构
 {
     VertexData vertex[MAX_VERTEX_NUM];
@@ -27,7 +34,11 @@ typedef struct adjmatrix//定义邻接矩阵结构
     int vexnum, arcnum;
     GraphKind kind;
 } AdjMatrix;
+```
 
+> 根据内容确定位置的函数
+
+```c
 int LocateVertex(AdjMatrix *G, VertexData v)//通过元素寻找位置
 {
     int j = false, k;
@@ -41,7 +52,11 @@ int LocateVertex(AdjMatrix *G, VertexData v)//通过元素寻找位置
     }
     return j;
 }
+```
 
+> 创建有向网络的函数
+
+```c
 void CreatDN(AdjMatrix *G)//创建有向网络
 {
     int i, j, k, weight;
@@ -68,7 +83,11 @@ void CreatDN(AdjMatrix *G)//创建有向网络
     }
     G->kind = DN;
 }
+```
 
+> 显示邻接矩阵的函数
+
+```c
 void DispDN(AdjMatrix *G)//输出有向图的邻接矩阵
 {
     int i, j;
@@ -91,7 +110,11 @@ void DispDN(AdjMatrix *G)//输出有向图的邻接矩阵
         printf("\n");
     }
 }
+```
 
+> 主函数
+
+```c
 int main()
 {
     AdjMatrix G_point;
@@ -101,3 +124,7 @@ int main()
 }
 
 ```
+
+> 1.输入顶点和边个数 2.输入 5 顶点数据 3.输入边的数据
+> 以下是输出效果
+> ![imag1](https://gitee.com/mumu176/picture/raw/master/adjm.jpg)
