@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #define MAX_VERTEX_NUM 10
 #define INFINITY 32768
-typedef enum//¶¨ÒåÃ¶¾ÙÍ¼ÀàĞÍ
+typedef enum//å®šä¹‰æšä¸¾å›¾ç±»å‹
 {
-    DG,//ÓĞÏòÍ¼
-    DN,//ÓĞÏòÍø
-    UDG,//ÎŞÏòÍ¼
-    UDN//ÎŞÏòÍø
+    DG,//æœ‰å‘å›¾
+    DN,//æœ‰å‘ç½‘
+    UDG,//æ— å‘å›¾
+    UDN//æ— å‘ç½‘
 } GraphKind;
 
-typedef char VertexData;//Í¼¶¥µãÊı¾İÀàĞÍÊÇ×Ö·û
+typedef char VertexData;//å›¾é¡¶ç‚¹æ•°æ®ç±»å‹æ˜¯å­—ç¬¦
 
-typedef struct arcnode//¶¨Òå±ß½á¹¹
+typedef struct arcnode//å®šä¹‰è¾¹ç»“æ„
 {
     int adj;
 } ArcNode;
-typedef struct adjmatrix//¶¨ÒåÁÚ½Ó¾ØÕó½á¹¹
+typedef struct adjmatrix//å®šä¹‰é‚»æ¥çŸ©é˜µç»“æ„
 {
     VertexData vertex[MAX_VERTEX_NUM];
     ArcNode arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM];
@@ -25,7 +25,7 @@ typedef struct adjmatrix//¶¨ÒåÁÚ½Ó¾ØÕó½á¹¹
     GraphKind kind;
 } AdjMatrix;
 
-int LocateVertex(AdjMatrix *G, VertexData v)//Í¨¹ıÔªËØÑ°ÕÒÎ»ÖÃ
+int LocateVertex(AdjMatrix *G, VertexData v)//é€šè¿‡å…ƒç´ å¯»æ‰¾ä½ç½®
 {
     int j = false, k;
     for (k = 0; k < G->vexnum; k++)
@@ -39,7 +39,7 @@ int LocateVertex(AdjMatrix *G, VertexData v)//Í¨¹ıÔªËØÑ°ÕÒÎ»ÖÃ
     return j;
 }
 
-void CreatDN(AdjMatrix *G)//´´½¨ÓĞÏòÍøÂç
+void CreatDN(AdjMatrix *G)//åˆ›å»ºæœ‰å‘ç½‘ç»œ
 {
     int i, j, k, weight;
     VertexData v1, v2;
@@ -51,13 +51,13 @@ void CreatDN(AdjMatrix *G)//´´½¨ÓĞÏòÍøÂç
     }
     for (i = 0; i < G->vexnum; i++)
     {
-        setbuf(stdin, NULL);//Çå¿ÕÊäÈë»º³åÇø
+        setbuf(stdin, NULL);//æ¸…ç©ºè¾“å…¥ç¼“å†²åŒº
         G->vertex[i] = getchar();
     }
 
     for (k = 0; k < G->arcnum; k++)
     {
-        setbuf(stdin,NULL);//Çå¿ÕÊäÈë»º³åÇø
+        setbuf(stdin,NULL);//æ¸…ç©ºè¾“å…¥ç¼“å†²åŒº
         scanf("%c %c %d", &v1, &v2, &weight);
         i = LocateVertex(G, v1);
         j = LocateVertex(G, v2);
@@ -66,7 +66,7 @@ void CreatDN(AdjMatrix *G)//´´½¨ÓĞÏòÍøÂç
     G->kind = DN;
 }
 
-void DispDN(AdjMatrix *G)//Êä³öÓĞÏòÍ¼µÄÁÚ½Ó¾ØÕó
+void DispDN(AdjMatrix *G)//è¾“å‡ºæœ‰å‘å›¾çš„é‚»æ¥çŸ©é˜µ
 {
     int i, j;
     printf("DN\t");
