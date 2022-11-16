@@ -137,6 +137,7 @@ int main()
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #define MAX_VERTEX_NUM 10
 #define INFINITY 32768
 typedef enum//定义枚举图类型
