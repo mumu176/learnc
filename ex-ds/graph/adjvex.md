@@ -263,3 +263,11 @@ int main()
 > 1.输入顶点和边个数 2.输入站点名 3.输入边的数据
 
 ![imag2](https://gitee.com/mumu176/picture/raw/master/adjmap.jpg)
+
+```mermaid
+graph LR
+a[canteen]----|3|b[dorm]
+b----|5|c[library]
+c-----|4|a
+
+```
