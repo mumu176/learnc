@@ -14,7 +14,7 @@ typedef enum //定义枚举图类型
 
 typedef struct vertexdata
 {
-    char name[MAX_VERTEX_NUM]
+    char name[MAX_VERTEX_NUM];
 }VertexData[MAX_VERTEX_NUM];
 
 typedef struct arcnode //定义边结构
@@ -87,17 +87,32 @@ void DispUDN(AdjMatrix *G) //输出有向图的邻接矩阵
         {
             if (G->arcs[i][j].adj != INFINITY)
                 printf("%d\t", G->arcs[i][j].adj);
-            else
-                printf("0\t");
+            else 
+                printf("inf\t");
         }
         printf("\n");
     }
 }
 
+bool visited[MAX_VERTEX_NUM*MAX_VERTEX_NUM]={false};
+//领接矩阵深度优先遍历
+void DepthFirstSerach(AdjMatrix g,int v0)
+{
+    int vj;
+    printf("%s\t",g.vertex[v0]->name);
+    visited[v0]=true;
+    for(vj=0;vj<g.vexnum;vj++)
+    {
+        if(visited[vj]==false&&g.arcs[v0][vj].adj!=INFINITY)
+        DepthFirstSerach(g,vj);
+    }  
+}
 int main()
 {
     AdjMatrix G_point;
     CreatUDN(&G_point);
     DispUDN(&G_point);
+    printf("DFS:\t");
+    DepthFirstSerach(G_point,0);
     return 0;
 }
